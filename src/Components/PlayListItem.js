@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class PlayListItem extends Component {
-  constructor(props) {
-    super(props)
-  }
+
+
   render() {
-    const { playlistitem } = this.props;
-    console.log(this.props);
+    const { song } = this.props;
     return (
 
-      <div className="col-sm-4" key={ playlistitem.url }>
+      <div className="card-block col-12" key={song.id}>
         <div class="card">
           <div class="card-block">
-            <h4 class="card-title">
-              { playlistitem.name }</h4>
+            <p className="card-title">
+              Title: {song.songTitle}</p>
+            <p className="card-title">{song.songTitle}
+              Artist: {song.songArtist}</p>
+            <p className="card-title">User: {song.userName}</p>
+            <p className="card-title">Comments: {song.songNotes}</p>
           </div>
         </div>
       </div>

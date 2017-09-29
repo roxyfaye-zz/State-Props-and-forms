@@ -10,7 +10,7 @@ class PlayListForm extends Component {
   constructor(props) {
     super(props)
     this.handleinputchange = this.handleInputChange.bind(this);
-    this.addSong = this.addSong.bind(this);
+
 
     this.state = {
       userName: '',
@@ -39,20 +39,57 @@ class PlayListForm extends Component {
         'Content-Type': 'application/json'
       }
     }).then(response => {
-      console.log(response, "yay");
+      console.log(response, "Here you are");
 
     }).catch(err => {
-      console.log(err, "boo!");
+      console.log(err, "Not so fast");
     });
     this.setState({userName: '', songNotes: '', songArtist: '', songTitle: ''});
   }
 
   render() {
     return (
-      
-    );
+      <div className="card-block col-4">
+        <div className="card ">
+          <h3 className='card-header'>Add your Song:</h3>
+          <div class="form-line">
+            <form onSubmit={this.addToList}>
+              <div className="form-group">
+                <label>
+                  Your Name:
+                  <input type="text" className="form-control" value={this.state.userName} onChange={this.handleInputChange("userName")} name="userName"/>
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  Artist/Band:
+                  <input onChange={this.handleInputChange("songArtist")} className="form-control" name="songArtist" type="text" value={this.state.songArtist}/>
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  Song Title:
+                  <input onChange={this.handleInputChange("songTitle")} className="form-control" name="songTitle" type="text" value={this.state.songTitle}/>
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  Comments:
+                  <textarea onChange={this.handleInputChange("songNotes")} className="form-control" name="songNotes" type="text" rows="3" value={this.state.songNotes}/>
+                </label>
+              </div>
+              <div className="form-group">
+                <input className="btn btn-success submit" type="submit" value="Submit"/>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
-}
+
+
 }
 
 export default PlayListForm;
